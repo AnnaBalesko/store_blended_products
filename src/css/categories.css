@@ -58,3 +58,7 @@
   background-color: var(--accent-color);
   color: white;
 }
+
+.hidden {
+  display: none;
+}
