@@ -1,4 +1,5 @@
 import { refs } from './refs';
+import { getCart,getWishlist } from './storage';
 
 export async function renderProducts(products) {
   const markup = products
@@ -60,6 +61,13 @@ export function renderModalProduct(product) {
           product.returnPolicy || 'N/A'
         }</p>
         <p class="modal-product__price">Price: ${product.price}$</p>
+        <button class="modal-product__buy-btn" type="button">Buy</button>
       </div>
 `;
+}
+
+export function updateNavCount() {
+  if (!refs.navCount) return;
+  const count = getCart().length + getWishlist().length;
+  refs.navCount.textContent = count;
 }

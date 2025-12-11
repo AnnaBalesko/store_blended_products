@@ -1,13 +1,29 @@
 export const refs = {
   closeModalBtn: document.querySelector('.modal__close-btn'),
+
   modal: document.querySelector('.modal'),
   modalProduct: document.querySelector('.modal-product'),
+
   body: document.querySelector('body'),
+
   themeToggleBtn: document.querySelector('.theme-toggle-btn'),
+  
   categoriesList: document.querySelector('.categories'),
   productsList: document.querySelector('.products'),
+
   notFound: document.querySelector('.not-found'),
+
   searchInput: document.querySelector('.search-form__input'),
   searchForm: document.querySelector('.search-form'),
-  searchClearBtn: document.querySelector('.search-form__btn-clear')
+  searchClearBtn: document.querySelector('.search-form__btn-clear'),
+
+  loadMoreBtn: document.querySelector('.load-more'),
+  scrollUpBtn: document.querySelector('.scroll-up'),
+  navCount: document.querySelector('.nav__count'),
+
+  loader: document.querySelector('.loader'),
+
+  cartItemsCount: document.querySelector('.cart-items-count'),
+  cartTotal: document.querySelector('.cart-total'),
+  buyProductsBtn: document.querySelector('.buy-products-btn'),
 };

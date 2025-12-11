@@ -8,8 +8,6 @@ export async function getProducts(page = 1) {
   const { data } = await axios.get(
     `${API_ENDPOINTS.PRODUCTS}?limit=${ITEMS_PER_PAGE}&skip=${skip}`
   );
-  console.log(data);
-  
   return data;
 }
 
@@ -25,15 +23,20 @@ export async function getProductById(id) {
 
 export async function searchProducts(q, page = 1) {
   const skip = (page - 1) * ITEMS_PER_PAGE;
-  const { data } = await axios.get(`${API_ENDPOINTS.SEARCH}?q=${encodeURIComponent(q)}&limit=${ITEMS_PER_PAGE}&skip=${skip}`);
+  const { data } = await axios.get(
+    `${API_ENDPOINTS.SEARCH}?q=${encodeURIComponent(
+      q
+    )}&limit=${ITEMS_PER_PAGE}&skip=${skip}`
+  );
   return data;
 }
 
-
 export async function getProductsByCategory(category, page = 1) {
   const skip = (page - 1) * ITEMS_PER_PAGE;
-  
+
   const cat = encodeURIComponent(category);
-  const { data } = await axios.get(`${API_ENDPOINTS.PRODUCTS}/category/${cat}?limit=${ITEMS_PER_PAGE}&skip=${skip}`);
+  const { data } = await axios.get(
+    `${API_ENDPOINTS.PRODUCTS}/category/${cat}?limit=${ITEMS_PER_PAGE}&skip=${skip}`
+  );
   return data;
 }
