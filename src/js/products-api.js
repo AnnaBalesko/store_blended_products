@@ -31,6 +31,15 @@ export async function searchProducts(q, page = 1) {
   return data;
 }
 
+export async function searchAllProducts(q, page = 1) {
+  const skip = (page - 1) * ITEMS_PER_PAGE;
+  const { data } = await axios.get(
+    `${API_ENDPOINTS.PRODUCTS
+    }?q=${encodeURIComponent(q)}&limit=0&skip=${skip}`
+  );
+  return data;
+}
+
 export async function getProductsByCategory(category, page = 1) {
   const skip = (page - 1) * ITEMS_PER_PAGE;
 

@@ -29,8 +29,6 @@ export async function initHomePage() {
     const categories = await api.getCategories();
     renderCategories(categories);
     currentPage = 1;
-    const { products } = await api.getProducts();
-    renderProducts(products);
     await loadProducts({ reset: true });
     updateNavCount();
     if (refs.searchClearBtn) refs.searchClearBtn.classList.add('hidden');
@@ -211,14 +209,14 @@ export async function searchSubmitHandler(e) {
   const query = refs.searchInput.value.trim();
 
   if (!query) return;
-refs.searchClearBtn.classList.remove('hidden');
+  refs.searchClearBtn.classList.remove('hidden');
   clearActiveCategory();
 
   currentQuery = query;
   currentPage = 1;
-  
+
   try {
-    const { products } = await api.searchProducts(query, currentPage);
+    const { products } = await api.searchAllProducts(query, currentPage);
 
     refs.productsList.innerHTML = '';
 
@@ -270,16 +268,18 @@ export async function onSearchClear() {
     currentQuery = '';
     currentPage = 1;
 
-    loadProducts({ reset: true }); 
+    loadProducts({ reset: true });
   });
-  
 }
 
 export function initScrollUp() {
   if (!refs.scrollUpBtn) return;
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) refs.scrollUpBtn.classList.remove('hidden');
-    else refs.scrollUpBtn.classList.add('hidden');
+    if (window.scrollY > 300) {
+      refs.scrollUpBtn.classList.add('scroll-top-btn--visible');
+    } else {
+      refs.scrollUpBtn.classList.remove('scroll-top-btn--visible');
+    }
   });
   refs.scrollUpBtn.addEventListener('click', () =>
     window.scrollTo({ top: 0, behavior: 'smooth' })

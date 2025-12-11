@@ -7,7 +7,7 @@ export const refs = {
   body: document.querySelector('body'),
 
   themeToggleBtn: document.querySelector('.theme-toggle-btn'),
-  
+
   categoriesList: document.querySelector('.categories'),
   productsList: document.querySelector('.products'),
 
@@ -18,7 +18,7 @@ export const refs = {
   searchClearBtn: document.querySelector('.search-form__btn-clear'),
 
   loadMoreBtn: document.querySelector('.load-more'),
-  scrollUpBtn: document.querySelector('.scroll-up'),
+  scrollUpBtn: document.querySelector('.scroll-top-btn'),
   navCount: document.querySelector('.nav__count'),
 
   loader: document.querySelector('.loader'),
