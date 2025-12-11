@@ -17,7 +17,7 @@ export const refs = {
   searchForm: document.querySelector('.search-form'),
   searchClearBtn: document.querySelector('.search-form__btn-clear'),
 
-  loadMoreBtn: document.querySelector('.load-more'),
+  loadMoreBtn: document.querySelector('.load-more-btn'),
   scrollUpBtn: document.querySelector('.scroll-top-btn'),
   navCount: document.querySelector('.nav__count'),
 
@@ -25,5 +25,5 @@ export const refs = {
 
   cartItemsCount: document.querySelector('.cart-items-count'),
   cartTotal: document.querySelector('.cart-total'),
-  buyProductsBtn: document.querySelector('.buy-products-btn'),
+  buyProductsBtn: document.querySelector('.cart-summary__btn'),
 };

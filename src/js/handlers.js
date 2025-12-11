@@ -57,7 +57,7 @@ export async function loadProducts({ reset = false } = {}) {
     if (!products.length) {
       refs.productsList.innerHTML = '';
       if (refs.notFound) refs.notFound.classList.add('not-found--visible');
-      if (refs.loadMoreBtn) refs.loadMoreBtn.classList.add('hidden');
+      if (refs.loadMoreBtn) refs.loadMoreBtn.classList.add('is-hidden');
       return;
     } else {
       if (refs.notFound) refs.notFound.classList.remove('not-found--visible');
@@ -66,10 +66,10 @@ export async function loadProducts({ reset = false } = {}) {
     renderProducts(products, { append });
     const loaded = (currentPage - 1) * ITEMS_PER_PAGE + products.length;
     if (loaded >= totalProducts) {
-      if (refs.loadMoreBtn) refs.loadMoreBtn.classList.add('hidden');
+      if (refs.loadMoreBtn) refs.loadMoreBtn.classList.add('is-hidden');
       toastInfo('No more products to load');
     } else {
-      if (refs.loadMoreBtn) refs.loadMoreBtn.classList.remove('hidden');
+      if (refs.loadMoreBtn) refs.loadMoreBtn.classList.remove('is-hidden');
     }
   } catch (err) {
     console.error(err);

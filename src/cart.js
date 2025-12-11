@@ -9,10 +9,12 @@ import {
   updateNavCount,
 } from './js/render-function';
 import { openModal } from './js/modal';
-import { toastSuccess } from './js/helpers';
+import { toastSuccess, toggleTheme } from './js/helpers';
 
 async function initCartPage() {
   updateNavCount();
+  const saved = storage.getTheme();
+  toggleTheme(saved);
   const ids = storage.getCart();
   if (!ids || ids.length === 0) {
     if (refs.notFound) refs.notFound.classList.add('not-found--visible');
@@ -32,6 +34,12 @@ async function initCartPage() {
     console.error(err);
   }
 }
+
+refs.themeToggleBtn?.addEventListener('click', () => {
+    const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    toggleTheme(next);
+    saveTheme(next);
+  });
 
 function updateSummary(items, total) {
   if (refs.cartItemsCount) refs.cartItemsCount.textContent = items;

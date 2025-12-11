@@ -9,10 +9,12 @@ import {
   updateNavCount,
 } from './js/render-function';
 import { openModal } from './js/modal';
-import { toastInfo } from './js/helpers';
+import { toastInfo, toggleTheme } from './js/helpers';
 
 async function initWishlistPage() {
   updateNavCount();
+  const saved = storage.getTheme();
+  toggleTheme(saved);
   const ids = storage.getWishlist();
   if (!ids || ids.length === 0) {
     if (refs.notFound) refs.notFound.classList.add('not-found--visible');
@@ -30,6 +32,12 @@ async function initWishlistPage() {
     toastInfo('Failed to load wishlist products');
   }
 }
+
+refs.themeToggleBtn?.addEventListener('click', () => {
+  const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+  toggleTheme(next);
+  saveTheme(next);
+});
 
 refs.productsList?.addEventListener('click', async e => {
   const li = e.target.closest('.products__item');
