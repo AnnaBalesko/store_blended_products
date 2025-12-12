@@ -23,7 +23,7 @@ export const refs = {
 
   loader: document.querySelector('.loader-overlay'),
 
-  cartItemsCount: document.querySelector('.cart-items-count'),
-  cartTotal: document.querySelector('.cart-total'),
+  cartItemsCount: document.querySelector('[data-count]'),
+  cartTotal: document.querySelector('[data-price]'),
   buyProductsBtn: document.querySelector('.cart-summary__btn'),
 };

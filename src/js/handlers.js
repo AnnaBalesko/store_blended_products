@@ -134,6 +134,24 @@ function checkFound(products) {
   }
 }
 
+export async function openProductModal(productId) {
+  try {
+    const product = await api.getProductById(productId);
+
+    renderModalProduct(product);
+    openModal();
+
+
+    syncModalButtons(product.id);
+
+
+    attachModalButtons(product.id);
+  } catch (err) {
+    console.error(err);
+    toastError('Failed to load product');
+  }
+}
+
 export async function productsClickHandler(e) {
   const li = e.target.closest('.products__item');
   if (!li) return;
@@ -146,6 +164,7 @@ export async function productsClickHandler(e) {
     const product = await api.getProductById(id);
     renderModalProduct(product);
     openModal();
+    syncModalButtons(product.id);
     attachModalButtons(product.id);
   } catch (err) {
     console.error(err);
@@ -172,6 +191,10 @@ function attachModalButtons(productId) {
         toastSuccess('Added to wishlist');
       }
       updateNavCount();
+      if (onWishlistChanged) {
+       onWishlistChanged();
+      }
+      syncModalButtons(productId);
     };
   }
 
@@ -187,6 +210,10 @@ function attachModalButtons(productId) {
         toastSuccess('Added to cart');
       }
       updateNavCount();
+      if (onCartChanged) {
+        onCartChanged();
+      }
+      syncModalButtons(productId);
     };
   }
 
@@ -208,7 +235,7 @@ export async function searchSubmitHandler(e) {
 
   const query = refs.searchInput.value.trim();
 
-  if (!query || "") {
+  if (!query || '') {
     toastError('Please, enter text');
     return;
   }
@@ -249,11 +276,11 @@ export async function searchSubmitHandler(e) {
   }
 }
 
-function showNotFound() {
+export function showNotFound() {
   refs.notFound.classList.add('not-found--visible');
 }
 
-function hideNotFound() {
+export function hideNotFound() {
   refs.notFound.classList.remove('not-found--visible');
 }
 
@@ -290,4 +317,32 @@ export function initScrollUp() {
   refs.scrollUpBtn.addEventListener('click', () =>
     window.scrollTo({ top: 0, behavior: 'smooth' })
   );
+}
+
+export function syncModalButtons(productId) {
+  const wishlistBtn = refs.modal.querySelector('.modal-product__btn--wishlist');
+  const cartBtn = refs.modal.querySelector('.modal-product__btn--cart');
+
+  if (wishlistBtn) {
+    wishlistBtn.textContent = storage.isInWishlist(productId)
+      ? 'Remove from Wishlist'
+      : 'Add to Wishlist';
+  }
+
+  if (cartBtn) {
+    cartBtn.textContent = storage.isInCart(productId)
+      ? 'Remove from Cart'
+      : 'Add to Cart';
+  }
+}
+
+let onCartChanged = null;
+let onWishlistChanged = null;
+
+export function setCartChangeHandler(cb) {
+  onCartChanged = cb;
+}
+
+export function setWishlistChangeHandler(cb) {
+  onWishlistChanged = cb;
 }
