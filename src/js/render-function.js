@@ -61,7 +61,6 @@ export function renderModalProduct(product) {
           product.returnPolicy || 'N/A'
         }</p>
         <p class="modal-product__price">Price: ${product.price}$</p>
-        <button class="modal-product__buy-btn" type="button">Buy</button>
       </div>
 `;
 }
