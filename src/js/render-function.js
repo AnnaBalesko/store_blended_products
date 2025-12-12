@@ -23,9 +23,9 @@ export async function renderProducts(products) {
  </li>`
     )
     .join('');
- 
-  
-  
+
+
+
   refs.productsList.insertAdjacentHTML('beforeEnd', markup);
 }
 
@@ -66,8 +66,16 @@ export function renderModalProduct(product) {
 `;
 }
 
+
 export function updateNavCount() {
-  if (!refs.navCount) return;
-  const count = getCart().length + getWishlist().length;
-  refs.navCount.textContent = count;
+  const cartEl = document.querySelector('[data-cart-count]');
+  const wishlistEl = document.querySelector('[data-wishlist-count]');
+
+  if (!cartEl || !wishlistEl) return;
+
+  const cartCount = getCart().length;
+  const wishlistCount = getWishlist().length;
+
+  cartEl.textContent = cartCount;
+  wishlistEl.textContent = wishlistCount;
 }

@@ -23,7 +23,6 @@ let currentCategory = 'All';
 let currentQuery = '';
 let totalProducts = 0;
 
-
 export async function initHomePage() {
   try {
     showLoader();
@@ -157,8 +156,8 @@ export async function productsClickHandler(e) {
 }
 
 function attachModalButtons(productId) {
-  const wishlistBtn = refs.modal.querySelector('.modal-product__wishlist-btn');
-  const cartBtn = refs.modal.querySelector('.modal-product__cart-btn');
+  const wishlistBtn = refs.modal.querySelector('.modal-product__btn--wishlist');
+  const cartBtn = refs.modal.querySelector('.modal-product__btn--cart');
   const buyBtn = refs.modal.querySelector('.modal-product__buy-btn');
 
   if (wishlistBtn) {
@@ -209,7 +208,11 @@ export async function searchSubmitHandler(e) {
 
   const query = refs.searchInput.value.trim();
 
-  if (!query) return;
+  if (!query || "") {
+    toastError('Please, enter text');
+    return;
+  }
+
   refs.searchClearBtn.classList.remove('hidden');
   clearActiveCategory();
 

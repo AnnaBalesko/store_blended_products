@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const saved = getTheme();
   toggleTheme(saved);
   initHomePage();
-  
 
   refs.categoriesList?.addEventListener('click', categoriesClickHandler);
   refs.productsList?.addEventListener('click', productsClickHandler);
