@@ -21,7 +21,7 @@ export const refs = {
   scrollUpBtn: document.querySelector('.scroll-top-btn'),
   navCount: document.querySelector('.nav__count'),
 
-  loader: document.querySelector('.loader'),
+  loader: document.querySelector('.loader-overlay'),
 
   cartItemsCount: document.querySelector('.cart-items-count'),
   cartTotal: document.querySelector('.cart-total'),

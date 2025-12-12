@@ -11,27 +11,21 @@ export function toggleTheme(theme) {
 
 export function showLoader() {
   if (!refs.loader) return;
-  refs.loader.classList.add('loader--visible');
+  refs.loader.classList.remove('hidden');
 }
 export function hideLoader() {
   if (!refs.loader) return;
-  refs.loader.classList.remove('loader--visible');
+  refs.loader.classList.add('hidden');
 }
 
 export function toastSuccess(msg) {
-  
-    iziToast.success({ title: 'OK', message: msg, position: 'topRight' });
-  
+  iziToast.success({ title: 'OK', message: msg, position: 'topRight' });
 }
 export function toastError(msg) {
- 
-    iziToast.error({ title: 'Error', message: msg, position: 'topRight' });
- 
+  iziToast.error({ title: 'Error', message: msg, position: 'topRight' });
 }
 export function toastInfo(msg) {
-  
-    iziToast.info({ title: 'Info', message: msg, position: 'topRight' });
-  
+  iziToast.info({ title: 'Info', message: msg, position: 'topRight' });
 }
 
 export function formatPrice(num) {
@@ -40,5 +34,5 @@ export function formatPrice(num) {
 
 export function clearActiveCategory() {
   const activeBtn = document.querySelector('.categories__btn--active');
-  if(activeBtn) activeBtn.classList.remove('categories__btn--active');
+  if (activeBtn) activeBtn.classList.remove('categories__btn--active');
 }

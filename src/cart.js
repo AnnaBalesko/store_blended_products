@@ -36,10 +36,10 @@ async function initCartPage() {
 }
 
 refs.themeToggleBtn?.addEventListener('click', () => {
-    const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-    toggleTheme(next);
-    saveTheme(next);
-  });
+  const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+  toggleTheme(next);
+  saveTheme(next);
+});
 
 function updateSummary(items, total) {
   if (refs.cartItemsCount) refs.cartItemsCount.textContent = items;

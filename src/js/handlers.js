@@ -23,6 +23,7 @@ let currentCategory = 'All';
 let currentQuery = '';
 let totalProducts = 0;
 
+
 export async function initHomePage() {
   try {
     showLoader();
@@ -216,6 +217,7 @@ export async function searchSubmitHandler(e) {
   currentPage = 1;
 
   try {
+    showLoader();
     const { products } = await api.searchAllProducts(query, currentPage);
 
     refs.productsList.innerHTML = '';
@@ -238,6 +240,7 @@ export async function searchSubmitHandler(e) {
 
     hideNotFound();
     renderProducts(filtered);
+    hideLoader();
   } catch (err) {
     console.log(err);
   }
